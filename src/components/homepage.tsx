@@ -1,5 +1,6 @@
 'use client'
 import axios from 'axios'
+import { Button } from './ui/button';
 
 export default function HomePageComponent() {
     async function buscarJogos() {
@@ -23,7 +24,7 @@ export default function HomePageComponent() {
 
     return (
         <div>
-            
+            <Button onClick={buscarJogos}>clica ai</Button>
         </div>
     )
 }
