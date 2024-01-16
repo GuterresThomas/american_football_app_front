@@ -14,6 +14,7 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover"
 import Image from 'next/image';
+import { Separator } from './ui/separator';
  
 interface Jogo {
     game: {
@@ -150,7 +151,7 @@ export default function HomePageComponent() {
                             />
                         </PopoverContent>
                     </Popover>
-                    <Button className=' bg-cyan-400 hover:bg-cyan-800' onClick={buscarJogos}>Buscar jogos</Button>
+                    <Button className=' bg-sky-500 hover:bg-sky-800' onClick={buscarJogos}>Buscar jogos</Button>
                     <Card className='m-4'>
                     {jogos.length > 0 && (
                         <CardContent>
@@ -158,17 +159,20 @@ export default function HomePageComponent() {
                             <ul>
                                 {jogos.map((jogo, index) => (
                                     <li key={index} className='m-2'>
-                                        <h3>Jogo {jogo.game.id}</h3>
-                                        <p>Estágio: {jogo.game.stage}</p>
-                                        <p>Semana: {jogo.game.week}</p>
-                                        <p>Data: {format(new Date(jogo.game.date.timestamp * 1000), "PPP p")}</p>
-                                        <p>Local: {jogo.game.venue.name}, {jogo.game.venue.city}</p>
-                                        <p>Status: {jogo.game.status.long}</p>
+                                        <h3 className='font-medium text-gray-950'>Jogo <span className='font-medium text-gray-800'>{jogo.game.id}</span></h3>
+                                        <p><span className='font-medium text-gray-950'>Estágio: </span> <span className='font-medium text-gray-800'>{jogo.game.stage}</span></p>
+                                        <p><span className='font-medium text-gray-950'>Semana:</span> <span className='font-medium text-gray-800'>{jogo.game.week}</span></p>
+                                        <p><span className='font-medium text-gray-950'>Data: </span> <span className='font-medium text-gray-800'>{format(new Date(jogo.game.date.timestamp * 1000), "PPP p")}</span></p>
+                                        <p><span className='font-medium text-gray-950'>Local: </span><span className='font-medium text-gray-800'>{jogo.game.venue.name}</span>, <span className='font-medium text-gray-800'>{jogo.game.venue.city}</span></p>
+                                        <p><span className='font-medium text-gray-950'>Status:</span> <span className='font-medium text-gray-800'>{jogo.game.status.long}</span></p>
 
-                                        <p>Resultado:</p>
-                                        <p>{jogo.teams.home.name} {jogo.scores.home.total} vs {jogo.teams.away.name} {jogo.scores.away.total}</p>
+                                        <p className='font-medium text-gray-950'>Resultado:</p>
+                                        <p><span className='font-bold text-zinc-900'>{jogo.teams.home.name}</span> <span className='font-bold text-sky-900'>{jogo.scores.home.total}</span> <span className='font-bold text-3xl text-gray-200'>vs</span> <span className='font-bold text-zinc-900'>{jogo.teams.away.name}</span> <span className='font-bold text-blue-900'>{jogo.scores.away.total}</span></p>
+                                        <Separator className='m-2'/>
                                     </li>
+                                    
                                 ))}
+                                
                             </ul>
                         </CardContent>
                     )}
