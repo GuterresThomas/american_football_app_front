@@ -14,10 +14,74 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover"
  
-
+interface Jogo {
+    game: {
+        id: number;
+        stage: string;
+        week: string;
+        date: {
+            timezone: string;
+            date: string;
+            time: string;
+            timestamp: number;
+        };
+        venue: {
+            name: string;
+            city: string;
+        };
+        status: {
+            short: string;
+            long: string;
+            timer: null;
+        };
+    };
+    league: {
+        id: number;
+        name: string;
+        season: string;
+        logo: string;
+        country: {
+            name: string;
+            code: string;
+            flag: string;
+        };
+    };
+    teams: {
+        home: {
+            id: number;
+            name: string;
+            logo: string;
+        };
+        away: {
+            id: number;
+            name: string;
+            logo: string;
+        };
+    };
+    scores: {
+        home: {
+            quarter_1: number;
+            quarter_2: number;
+            quarter_3: number;
+            quarter_4: number;
+            overtime: null;
+            total: number;
+        };
+        away: {
+            quarter_1: number;
+            quarter_2: number;
+            quarter_3: number;
+            quarter_4: number;
+            overtime: null;
+            total: number;
+        };
+    };
+}
 
 export default function HomePageComponent() {
     const [date, setDate] = React.useState<Date>()
+    const [jogos, setJogos] = React.useState<Jogo[]>([]);
+
 
 
     async function buscarJogos() {
@@ -41,6 +105,9 @@ export default function HomePageComponent() {
         try {
             const response = await axios.request(options);
             console.log(response.data);
+            setJogos(response.data.response); 
+
+            console.log("Estado jogos atualizado:", jogos);
         } catch (error) {
             console.error(error);
         }
@@ -52,6 +119,7 @@ export default function HomePageComponent() {
                 <CardHeader>Jogos na data selecionada:</CardHeader>
                 <CardContent className='flex flex-col'>
                     <CardDescription>Lista de jogos na data selecionada:</CardDescription>
+                    
                     <Popover>
                         <PopoverTrigger asChild>
                             <Button
@@ -78,7 +146,28 @@ export default function HomePageComponent() {
                     
                 </CardContent>
             </Card>
-           
+            <div>
+                    {jogos.length > 0 && (
+                        <div>
+                            <h2>Dados dos Jogos:</h2>
+                            <ul>
+                                {jogos.map((jogo, index) => (
+                                    <li key={index}>
+                                        <h3>Jogo {jogo.game.id}</h3>
+                                        <p>Estágio: {jogo.game.stage}</p>
+                                        <p>Semana: {jogo.game.week}</p>
+                                        <p>Data: {format(new Date(jogo.game.date.timestamp * 1000), "PPP p")}</p>
+                                        <p>Local: {jogo.game.venue.name}, {jogo.game.venue.city}</p>
+                                        <p>Status: {jogo.game.status.long}</p>
+
+                                        <p>Resultado:</p>
+                                        <p>{jogo.teams.home.name} {jogo.scores.home.total} vs {jogo.teams.away.name} {jogo.scores.away.total}</p>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                    )}
+                    </div>
         </div>
     )
 }
