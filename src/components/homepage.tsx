@@ -13,6 +13,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover"
+import Image from 'next/image';
  
 interface Jogo {
     game: {
@@ -115,7 +116,14 @@ export default function HomePageComponent() {
 
     return (
         <div>
-            <Card>
+            <div className="flex justify-center">
+                <Image src='/logo_american_football.png'
+                width={200}
+                height={200}
+                alt="logo"
+                />
+            </div>
+            <Card className='bg-zinc-50 m-4'>
                 <CardHeader>Jogos na data selecionada:</CardHeader>
                 <CardContent className='flex flex-col'>
                     <CardDescription>Lista de jogos na data selecionada:</CardDescription>
@@ -142,17 +150,14 @@ export default function HomePageComponent() {
                             />
                         </PopoverContent>
                     </Popover>
-                    <Button onClick={buscarJogos}>Buscar jogos</Button>
-                    
-                </CardContent>
-            </Card>
-            <div>
+                    <Button className=' bg-cyan-400 hover:bg-cyan-800' onClick={buscarJogos}>Buscar jogos</Button>
+                    <Card className='m-4'>
                     {jogos.length > 0 && (
-                        <div>
-                            <h2>Dados dos Jogos:</h2>
+                        <CardContent>
+                            <CardDescription>Dados dos Jogos:</CardDescription>
                             <ul>
                                 {jogos.map((jogo, index) => (
-                                    <li key={index}>
+                                    <li key={index} className='m-2'>
                                         <h3>Jogo {jogo.game.id}</h3>
                                         <p>Estágio: {jogo.game.stage}</p>
                                         <p>Semana: {jogo.game.week}</p>
@@ -165,9 +170,12 @@ export default function HomePageComponent() {
                                     </li>
                                 ))}
                             </ul>
-                        </div>
+                        </CardContent>
                     )}
-                    </div>
+                    </Card>
+                </CardContent>
+            </Card>
+            
         </div>
     )
 }
