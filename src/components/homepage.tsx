@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 'use client'
 import axios from 'axios'
 import { Button } from './ui/button';
@@ -163,13 +164,25 @@ export default function HomePageComponent() {
                     {jogos.length > 0 && (
                         <CardContent>
                             <CardDescription>Dados dos Jogos:</CardDescription>
-                            <div className='flex justify-center'>
+                            <div>
                                 <ul>
                                     {jogos.map((jogo, index) => (
                                         <Accordion key={index} type="single" collapsible>
                                             <AccordionItem value={`item-${index}`}>
                                             <li className='m-2'>
-                                                <AccordionTrigger className='bg-gray-200 rounded-md p-1 grid grid-flow-col'><p><span className='font-bold text-zinc-900'>{jogo.teams.home.name}</span> <span className='font-bold text-sky-900'>{jogo.scores.home.total}</span> <span className='font-bold text-3xl text-white'>vs</span> <span className='font-bold text-zinc-900'>{jogo.teams.away.name}</span> <span className='font-bold text-blue-900'>{jogo.scores.away.total}</span></p></AccordionTrigger>
+                                                <AccordionTrigger className='bg-gray-200 rounded-md flex justify-center hover:no-underline'>
+                                                    <div className="flex items-center">
+                                                        <img src={jogo.teams.home.logo} width={50} height={50} alt={`${jogo.teams.home.name} logo`} />
+                                                        <span className='font-bold text-zinc-900'>{jogo.teams.home.name}</span>
+                                                        </div>
+                                                        <span className='font-bold text-sky-900'>{jogo.scores.home.total}</span>
+                                                        <span className='font-bold text-3xl ml-2 mr-2 text-white'>vs</span>
+                                                        <div className="flex items-center">
+                                                            <span className='font-bold text-zinc-900'>{jogo.teams.away.name}</span>
+                                                            <img src={jogo.teams.away.logo} width={50} height={50} alt={`${jogo.teams.away.name} logo`} />
+                                                        </div>
+                                                    <span className='font-bold text-blue-900'>{jogo.scores.away.total}</span>                               
+                                                </AccordionTrigger>
                                                 <AccordionContent>
                                                 <p><span className='font-medium text-gray-950'>Estágio: </span> <span className='font-medium text-gray-800'>{jogo.game.stage}</span></p>
                                                 <p><span className='font-medium text-gray-950'>Semana:</span> <span className='font-medium text-gray-800'>{jogo.game.week}</span></p>
