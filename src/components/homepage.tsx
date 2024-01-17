@@ -172,16 +172,17 @@ export default function HomePageComponent() {
                                             <li className='m-2'>
                                                 <AccordionTrigger className='bg-gray-200 rounded-md flex justify-center hover:no-underline'>
                                                     <div className="flex items-center">
-                                                        <img src={jogo.teams.home.logo} width={50} height={50} alt={`${jogo.teams.home.name} logo`} />
+                                                        <img className='ml-2 mr-2' src={jogo.teams.home.logo} width={50} height={50} alt={`${jogo.teams.home.name} logo`} />
                                                         <span className='font-bold text-zinc-900'>{jogo.teams.home.name}</span>
                                                         </div>
-                                                        <span className='font-bold text-sky-900'>{jogo.scores.home.total}</span>
+                                                        <span className='font-bold text-sky-900 ml-2 mr-2'>{jogo.scores.home.total}</span>
                                                         <span className='font-bold text-3xl ml-2 mr-2 text-white'>vs</span>
                                                         <div className="flex items-center">
-                                                            <span className='font-bold text-zinc-900'>{jogo.teams.away.name}</span>
-                                                            <img src={jogo.teams.away.logo} width={50} height={50} alt={`${jogo.teams.away.name} logo`} />
+                                                            <span className='font-bold text-blue-900 ml-2 mr-2'>{jogo.scores.away.total}</span>  
+                                                            <span className='font-bold text-zinc-900'>{jogo.teams.away.name}</span>       
                                                         </div>
-                                                    <span className='font-bold text-blue-900'>{jogo.scores.away.total}</span>                               
+                                                        <img className='ml-2 mr-2' src={jogo.teams.away.logo} width={50} height={50} alt={`${jogo.teams.away.name} logo`} />
+                                                                                  
                                                 </AccordionTrigger>
                                                 <AccordionContent>
                                                 <p><span className='font-medium text-gray-950'>Estágio: </span> <span className='font-medium text-gray-800'>{jogo.game.stage}</span></p>
