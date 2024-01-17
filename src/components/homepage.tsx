@@ -5,6 +5,13 @@ import { Card, CardContent, CardDescription, CardHeader } from './ui/card';
 import * as React from "react"
 import { format } from "date-fns"
 import { Calendar as CalendarIcon } from "lucide-react"
+
+import {
+    Accordion,
+    AccordionContent,
+    AccordionItem,
+    AccordionTrigger,
+  } from "@/components/ui/accordion"
  
 import { cn } from "@/lib/utils"
 import { Calendar } from "@/components/ui/calendar"
@@ -156,24 +163,32 @@ export default function HomePageComponent() {
                     {jogos.length > 0 && (
                         <CardContent>
                             <CardDescription>Dados dos Jogos:</CardDescription>
-                            <ul>
-                                {jogos.map((jogo, index) => (
-                                    <li key={index} className='m-2'>
-                                        <h3 className='font-medium text-gray-950'>Jogo <span className='font-medium text-gray-800'>{jogo.game.id}</span></h3>
-                                        <p><span className='font-medium text-gray-950'>Estágio: </span> <span className='font-medium text-gray-800'>{jogo.game.stage}</span></p>
-                                        <p><span className='font-medium text-gray-950'>Semana:</span> <span className='font-medium text-gray-800'>{jogo.game.week}</span></p>
-                                        <p><span className='font-medium text-gray-950'>Data: </span> <span className='font-medium text-gray-800'>{format(new Date(jogo.game.date.timestamp * 1000), "PPP p")}</span></p>
-                                        <p><span className='font-medium text-gray-950'>Local: </span><span className='font-medium text-gray-800'>{jogo.game.venue.name}</span>, <span className='font-medium text-gray-800'>{jogo.game.venue.city}</span></p>
-                                        <p><span className='font-medium text-gray-950'>Status:</span> <span className='font-medium text-gray-800'>{jogo.game.status.long}</span></p>
+                            <div className='flex justify-center'>
+                                <ul>
+                                <Accordion type="single" collapsible>
+                                <AccordionItem value="item-1">
+                                        {jogos.map((jogo, index) => (
+                                            <li key={index} className='m-2'>
+                                                <AccordionTrigger><p><span className='font-bold text-zinc-900'>{jogo.teams.home.name}</span> <span className='font-bold text-sky-900'>{jogo.scores.home.total}</span> <span className='font-bold text-3xl text-gray-200'>vs</span> <span className='font-bold text-zinc-900'>{jogo.teams.away.name}</span> <span className='font-bold text-blue-900'>{jogo.scores.away.total}</span></p></AccordionTrigger>
+                                                <AccordionContent>
+                                                <h3 className='font-medium text-gray-950'>Jogo <span className='font-medium text-gray-800'>{jogo.game.id}</span></h3>
+                                                <p><span className='font-medium text-gray-950'>Estágio: </span> <span className='font-medium text-gray-800'>{jogo.game.stage}</span></p>
+                                                <p><span className='font-medium text-gray-950'>Semana:</span> <span className='font-medium text-gray-800'>{jogo.game.week}</span></p>
+                                                <p><span className='font-medium text-gray-950'>Data: </span> <span className='font-medium text-gray-800'>{format(new Date(jogo.game.date.timestamp * 1000), "PPP p")}</span></p>
+                                                <p><span className='font-medium text-gray-950'>Local: </span><span className='font-medium text-gray-800'>{jogo.game.venue.name}</span>, <span className='font-medium text-gray-800'>{jogo.game.venue.city}</span></p>
+                                                <p><span className='font-medium text-gray-950'>Status:</span> <span className='font-medium text-gray-800'>{jogo.game.status.long}</span></p>
 
-                                        <p className='font-medium text-gray-950'>Resultado:</p>
-                                        <p><span className='font-bold text-zinc-900'>{jogo.teams.home.name}</span> <span className='font-bold text-sky-900'>{jogo.scores.home.total}</span> <span className='font-bold text-3xl text-gray-200'>vs</span> <span className='font-bold text-zinc-900'>{jogo.teams.away.name}</span> <span className='font-bold text-blue-900'>{jogo.scores.away.total}</span></p>
-                                        <Separator className='m-2'/>
-                                    </li>
-                                    
-                                ))}
-                                
-                            </ul>
+                                                <p className='font-medium text-gray-950'>Resultado:</p>
+                                                <Separator className='m-2'/>
+                                                
+                                            </AccordionContent>
+                                            </li>
+                                        ))}
+                                    </AccordionItem>    
+                                </Accordion>           
+                                </ul>
+                            
+                            </div>
                         </CardContent>
                     )}
                     </Card>
