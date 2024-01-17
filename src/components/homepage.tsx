@@ -159,35 +159,31 @@ export default function HomePageComponent() {
                         </PopoverContent>
                     </Popover>
                     <Button className=' bg-sky-500 hover:bg-sky-800' onClick={buscarJogos}>Buscar jogos</Button>
-                    <Card className='m-4'>
+                    <Card className='m-4 w-full'>
                     {jogos.length > 0 && (
                         <CardContent>
                             <CardDescription>Dados dos Jogos:</CardDescription>
                             <div className='flex justify-center'>
                                 <ul>
-                                <Accordion type="single" collapsible>
-                                <AccordionItem value="item-1">
-                                        {jogos.map((jogo, index) => (
-                                            <li key={index} className='m-2'>
-                                                <AccordionTrigger><p><span className='font-bold text-zinc-900'>{jogo.teams.home.name}</span> <span className='font-bold text-sky-900'>{jogo.scores.home.total}</span> <span className='font-bold text-3xl text-gray-200'>vs</span> <span className='font-bold text-zinc-900'>{jogo.teams.away.name}</span> <span className='font-bold text-blue-900'>{jogo.scores.away.total}</span></p></AccordionTrigger>
+                                    {jogos.map((jogo, index) => (
+                                        <Accordion key={index} type="single" collapsible>
+                                            <AccordionItem value={`item-${index}`}>
+                                            <li className='m-2'>
+                                                <AccordionTrigger className='bg-gray-200 rounded-md p-1 grid grid-flow-col'><p><span className='font-bold text-zinc-900'>{jogo.teams.home.name}</span> <span className='font-bold text-sky-900'>{jogo.scores.home.total}</span> <span className='font-bold text-3xl text-white'>vs</span> <span className='font-bold text-zinc-900'>{jogo.teams.away.name}</span> <span className='font-bold text-blue-900'>{jogo.scores.away.total}</span></p></AccordionTrigger>
                                                 <AccordionContent>
-                                                <h3 className='font-medium text-gray-950'>Jogo <span className='font-medium text-gray-800'>{jogo.game.id}</span></h3>
                                                 <p><span className='font-medium text-gray-950'>Estágio: </span> <span className='font-medium text-gray-800'>{jogo.game.stage}</span></p>
                                                 <p><span className='font-medium text-gray-950'>Semana:</span> <span className='font-medium text-gray-800'>{jogo.game.week}</span></p>
                                                 <p><span className='font-medium text-gray-950'>Data: </span> <span className='font-medium text-gray-800'>{format(new Date(jogo.game.date.timestamp * 1000), "PPP p")}</span></p>
                                                 <p><span className='font-medium text-gray-950'>Local: </span><span className='font-medium text-gray-800'>{jogo.game.venue.name}</span>, <span className='font-medium text-gray-800'>{jogo.game.venue.city}</span></p>
                                                 <p><span className='font-medium text-gray-950'>Status:</span> <span className='font-medium text-gray-800'>{jogo.game.status.long}</span></p>
-
-                                                <p className='font-medium text-gray-950'>Resultado:</p>
                                                 <Separator className='m-2'/>
                                                 
                                             </AccordionContent>
-                                            </li>
-                                        ))}
-                                    </AccordionItem>    
-                                </Accordion>           
+                                                </li>
+                                        </AccordionItem>    
+                                    </Accordion>  
+                                        ))}       
                                 </ul>
-                            
                             </div>
                         </CardContent>
                     )}
