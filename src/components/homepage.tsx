@@ -133,9 +133,9 @@ export default function HomePageComponent() {
                 />
             </div>
             <Card className='bg-zinc-50 m-4'>
-                <CardHeader>Jogos na data selecionada:</CardHeader>
+                <CardHeader className='font-bold text-2xl '>Ver jogos por data:</CardHeader>
                 <CardContent className='flex flex-col'>
-                    <CardDescription>Lista de jogos na data selecionada:</CardDescription>
+                    <CardDescription>Selecione a data por favor:</CardDescription>
                     
                     <Popover>
                         <PopoverTrigger asChild>
@@ -185,11 +185,13 @@ export default function HomePageComponent() {
                                                                                   
                                                 </AccordionTrigger>
                                                 <AccordionContent>
-                                                <p><span className='font-medium text-gray-950'>Estágio: </span> <span className='font-medium text-gray-800'>{jogo.game.stage}</span></p>
-                                                <p><span className='font-medium text-gray-950'>Semana:</span> <span className='font-medium text-gray-800'>{jogo.game.week}</span></p>
-                                                <p><span className='font-medium text-gray-950'>Data: </span> <span className='font-medium text-gray-800'>{format(new Date(jogo.game.date.timestamp * 1000), "PPP p")}</span></p>
-                                                <p><span className='font-medium text-gray-950'>Local: </span><span className='font-medium text-gray-800'>{jogo.game.venue.name}</span>, <span className='font-medium text-gray-800'>{jogo.game.venue.city}</span></p>
-                                                <p><span className='font-medium text-gray-950'>Status:</span> <span className='font-medium text-gray-800'>{jogo.game.status.long}</span></p>
+                                                    <div className='text-center gap-2'>
+                                                        <p><span className='font-medium text-gray-950'>Estágio: </span> <span className='font-medium text-gray-800'>{jogo.game.stage}</span></p>
+                                                        <p><span className='font-medium text-gray-950'>Semana:</span> <span className='font-medium text-gray-800'>{jogo.game.week}</span></p>
+                                                        <p><span className='font-medium text-gray-950'>Data: </span> <span className='font-medium text-gray-800'>{format(new Date(jogo.game.date.timestamp * 1000), "PPP p")}</span></p>
+                                                        <p><span className='font-medium text-gray-950'>Local: </span><span className='font-medium text-gray-800'>{jogo.game.venue.name}</span>, <span className='font-medium text-gray-800'>{jogo.game.venue.city}</span></p>
+                                                        <p><span className='font-medium text-gray-950'>Status:</span> <span className='font-medium text-gray-800'>{jogo.game.status.long}</span></p>
+                                                    </div>
                                                 <Separator className='m-2'/>
                                                 
                                             </AccordionContent>
@@ -200,7 +202,14 @@ export default function HomePageComponent() {
                                 </ul>
                             </div>
                         </CardContent>
-                    )}
+                    ) }
+                    </Card>
+                    <Card>
+                                 {jogos.length === 0 && (
+                                    <CardContent className='flex justify-center p-2'>
+                                        <span className='text-gray-900 font-medium'>Sem dados de jogos</span>
+                                    </CardContent>
+                                 )}
                     </Card>
                 </CardContent>
             </Card>
