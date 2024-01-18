@@ -188,12 +188,30 @@ export default function HomePageComponent() {
                                                     <div className='text-center gap-2'>
                                                         <p><span className='font-medium text-gray-950'>Estágio: </span> <span className='font-medium text-gray-800'>{jogo.game.stage}</span></p>
                                                         <p><span className='font-medium text-gray-950'>Semana:</span> <span className='font-medium text-gray-800'>{jogo.game.week}</span></p>
-                                                        <p><span className='font-medium text-gray-950'>Data: </span> <span className='font-medium text-gray-800'>{format(new Date(jogo.game.date.timestamp * 1000), "PPP p")}</span></p>
+                                                        <p><span className='font-medium text-gray-950'>Data: </span> <span className='font-medium text-gray-800'>{format(new Date(jogo.game.date.timestamp * 1000), "dd/MM/yyyy HH:mm")}</span></p>
                                                         <p><span className='font-medium text-gray-950'>Local: </span><span className='font-medium text-gray-800'>{jogo.game.venue.name}</span>, <span className='font-medium text-gray-800'>{jogo.game.venue.city}</span></p>
                                                         <p><span className='font-medium text-gray-950'>Status:</span> <span className='font-medium text-gray-800'>{jogo.game.status.long}</span></p>
                                                     </div>
+                                                    <div className='flex justify-center'>
+                                                        <Accordion type="single" collapsible>
+                                                        <AccordionItem value="item-1">
+                                                            <AccordionTrigger className='m-2'>Pontuações:</AccordionTrigger>
+                                                            <AccordionContent className='flex flex-col gap-2 text-center'>
+                                                                <p className='font-medium text-gray-950'>1º quarto</p>
+                                                                <p className='flex gap-2'><img src={jogo.teams.home.logo} height={20} width={20} alt='home team logo' /><span className='font-medium text-gray-950'>{jogo.scores.home.quarter_1}</span> <span> VS </span> <span className='font-medium text-gray-950'>{jogo.scores.away.quarter_1}</span> <img src={jogo.teams.away.logo} height={20} width={20} alt='away team logo' /></p>
+                                                                <p className='font-medium text-gray-950'>2º quarto</p>
+                                                                <p className='flex gap-2'><img src={jogo.teams.home.logo} height={20} width={20} alt='home team logo' /><span className='font-medium text-gray-950'>{jogo.scores.home.quarter_2}</span> <span> VS </span> <span className='font-medium text-gray-950'>{jogo.scores.away.quarter_2}</span> <img src={jogo.teams.away.logo} height={20} width={20} alt='away team logo' /></p>
+                                                                <p className='font-medium text-gray-950'>3º quarto</p>
+                                                                <p className='flex gap-2'><img src={jogo.teams.home.logo} height={20} width={20} alt='home team logo' /><span className='font-medium text-gray-950'>{jogo.scores.home.quarter_3}</span> <span> VS </span> <span className='font-medium text-gray-950'>{jogo.scores.away.quarter_3}</span> <img src={jogo.teams.away.logo} height={20} width={20} alt='away team logo' /></p>
+                                                                <p className='font-medium text-gray-950'>4º quarto</p>
+                                                                <p className='flex gap-2'><img src={jogo.teams.home.logo} height={20} width={20} alt='home team logo' /><span className='font-medium text-gray-950'>{jogo.scores.home.quarter_4}</span> <span> VS </span> <span className='font-medium text-gray-950'>{jogo.scores.away.quarter_4}</span> <img src={jogo.teams.away.logo} height={20} width={20} alt='away team logo' /></p>
+                                                                <p className='font-medium text-gray-950'>total</p>
+                                                                <p className='flex gap-2'><img src={jogo.teams.home.logo} height={20} width={20} alt='home team logo' /><span className='font-medium text-gray-950'>{jogo.scores.home.total}</span> <span> VS </span> <span className='font-medium text-gray-950'>{jogo.scores.away.total}</span> <img src={jogo.teams.away.logo} height={20} width={20} alt='away team logo' /></p>
+                                                            </AccordionContent>
+                                                        </AccordionItem>
+                                                        </Accordion>
+                                                    </div>
                                                 <Separator className='m-2'/>
-                                                
                                             </AccordionContent>
                                                 </li>
                                         </AccordionItem>    
