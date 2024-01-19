@@ -6,6 +6,8 @@ import { useEffect, useState } from 'react'
 import { Card, CardContent, CardDescription, CardHeader } from "./ui/card";
 import { Accordion, AccordionItem } from "./ui/accordion";
 import { AccordionContent, AccordionTrigger } from "@radix-ui/react-accordion";
+import Image from "next/image";
+
 
 interface Team {
     id: number;
@@ -54,31 +56,45 @@ export default function GetTeamsPage() {
         fetchFootballTeams();
       }, []);
     return (
-    <Card>
-        <CardContent>    
-            <CardDescription>Times da nfl</CardDescription>
-            <CardHeader>Lista de times da nfl</CardHeader>
-            <div>
-                <ul>
-                    {team.map((team, index) => (
-                        <Accordion key={index} type="single" collapsible>
-                             <AccordionItem value={`item-${index}`}>
-                                <li>
-                                    <AccordionTrigger>
-                                        <div>
-                                            <span><img src={team.logo} alt="team logo" /></span> <span>{team.name}</span>
-                                        </div>
-                                    </AccordionTrigger>
-                                    <AccordionContent>
-                                        <div></div>
-                                    </AccordionContent>
-                                </li>
-                            </AccordionItem>
-                        </Accordion>
-                    ))}
-                </ul>
-            </div>
-        </CardContent>
-    </Card>
+        <div>
+            <div className="flex justify-center">
+                <Image src='/logo_american_football.png'
+                width={200}
+                height={200}
+                alt="logo"
+                />
+            </div>         
+            <Card>
+                <CardContent>    
+                    <CardDescription>Times da nfl</CardDescription>
+                    <CardHeader>Lista de times da nfl</CardHeader>
+                    <div className="flex justify-center">
+                        <ul>
+                            {team.map((team, index) => (
+                                <Accordion key={index} type="single" collapsible>
+                                    <AccordionItem value={`item-${index}`}>
+                                        <li>
+                                            <AccordionTrigger>
+                                                <div className="flex gap-2">
+                                                    <span><img src={team.logo} height={50} width={50} alt="team logo" /></span> <span>{team.name}</span>
+                                                </div>
+                                            </AccordionTrigger>
+                                            <AccordionContent>
+                                                <div className="m-2 gap-2">
+                                                    <p>cidade: <span>{team.city}</span></p>
+                                                    <p>abreviação: <span>{team.code}</span></p>
+                                                    <p>coach: <span>{team.coach}</span></p>
+                                                    <p>estádio: <span>{team.stadium}</span></p>
+                                                </div>
+                                            </AccordionContent>
+                                        </li>
+                                    </AccordionItem>
+                                </Accordion>
+                            ))}
+                        </ul>
+                    </div>
+                </CardContent>
+            </Card>
+        </div>
     )
 }
