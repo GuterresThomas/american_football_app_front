@@ -160,7 +160,7 @@ export default function HomePageComponent() {
                         </PopoverContent>
                     </Popover>
                     <Button className=' bg-sky-500 hover:bg-sky-800' onClick={buscarJogos}>Buscar jogos</Button>
-                    <Card className='m-4 w-full'>
+                    <Card className='w-full'>
                     {jogos.length > 0 && (
                         <CardContent>
                             <CardDescription>Dados dos Jogos:</CardDescription>
@@ -171,8 +171,8 @@ export default function HomePageComponent() {
                                             <AccordionItem value={`item-${index}`}>
                                             <li className='m-2'>
                                                 <AccordionTrigger className='bg-gray-200 rounded-md flex justify-center hover:no-underline'>
-                                                    <div className="flex items-center">
-                                                        <img className='ml-2 mr-2' src={jogo.teams.home.logo} width={50} height={50} alt={`${jogo.teams.home.name} logo`} />
+                                                    <div className="sm:flex items-center md:flex md:items-center">
+                                                        <img className='' src={jogo.teams.home.logo} width={50} height={50} alt={`${jogo.teams.home.name} logo`} />
                                                         <span className='font-bold text-zinc-900'>{jogo.teams.home.name}</span>
                                                         </div>
                                                         <span className='font-bold text-sky-900 ml-2 mr-2'>{jogo.scores.home.total}</span>
