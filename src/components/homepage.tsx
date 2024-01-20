@@ -169,20 +169,19 @@ export default function HomePageComponent() {
                                     {jogos.map((jogo, index) => (
                                         <Accordion key={index} type="single" collapsible>
                                             <AccordionItem value={`item-${index}`}>
-                                            <li className='m-2'>
-                                                <AccordionTrigger className='bg-gray-200 rounded-md flex justify-center hover:no-underline'>
-                                                    <div className="sm:flex items-center md:flex md:items-center">
+                                            <li className='md:m-2'>
+                                                <AccordionTrigger className='md:bg-gray-200 rounded-md md:flex md:justify-center hover:no-underline'>
+                                                    <div className="md:flex md:items-center">
                                                         <img className='' src={jogo.teams.home.logo} width={50} height={50} alt={`${jogo.teams.home.name} logo`} />
                                                         <span className='font-bold text-zinc-900'>{jogo.teams.home.name}</span>
                                                         </div>
-                                                        <span className='font-bold text-sky-900 ml-2 mr-2'>{jogo.scores.home.total}</span>
-                                                        <span className='font-bold text-3xl ml-2 mr-2 text-white'>vs</span>
-                                                        <div className="flex items-center">
-                                                            <span className='font-bold text-blue-900 ml-2 mr-2'>{jogo.scores.away.total}</span>  
-                                                            <span className='font-bold text-zinc-900'>{jogo.teams.away.name}</span>       
-                                                        </div>
-                                                        <img className='ml-2 mr-2' src={jogo.teams.away.logo} width={50} height={50} alt={`${jogo.teams.away.name} logo`} />
-                                                                                  
+                                                        <span className='font-bold text-sky-900 md:ml-2 md:mr-2'>{jogo.scores.home.total}</span>
+                                                        <span className='font-bold text-3xl ml-2 mr-2 md:text-white'>vs</span>
+                                                        <div className="md:flex md:items-center">
+                                                            <span className='font-bold text-blue-900 md:ml-2 md:mr-2'>{jogo.scores.away.total}</span>  
+                                                            <span className='font-bold text-zinc-900'>{jogo.teams.away.name}</span>                            
+                                                            <img className='md:ml-2 md:mr-2' src={jogo.teams.away.logo} width={50} height={50} alt={`${jogo.teams.away.name} logo`} />   
+                                                        </div>      
                                                 </AccordionTrigger>
                                                 <AccordionContent>
                                                     <div className='text-center gap-2'>
