@@ -177,8 +177,8 @@ export default function HomePageComponent() {
                                                         </div>
                                                         <span className='font-bold text-sky-900 md:ml-2 md:mr-2'>{jogo.scores.home.total}</span>
                                                         <span className='font-bold text-3xl ml-2 mr-2 md:text-white'>vs</span>
-                                                        <div className="md:flex md:items-center">
-                                                            <span className='font-bold text-blue-900 md:ml-2 md:mr-2'>{jogo.scores.away.total}</span>  
+                                                        <span className='font-bold text-blue-900 md:ml-2 md:mr-2'>{jogo.scores.away.total}</span>
+                                                        <div className="md:flex md:items-center">  
                                                             <span className='font-bold text-zinc-900'>{jogo.teams.away.name}</span>                            
                                                             <img className='md:ml-2 md:mr-2' src={jogo.teams.away.logo} width={50} height={50} alt={`${jogo.teams.away.name} logo`} />   
                                                         </div>      
